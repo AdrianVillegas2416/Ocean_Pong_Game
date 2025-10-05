@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gameBackBtn.addEventListener('click', () => {
         canvas.style.display = 'none';
-        gameBackBtn.style.display = 'none';
+        gameBackBtn.style.display = 'none' ;
         menu.style.display = 'flex';
         showBackgroundElements();
     })
