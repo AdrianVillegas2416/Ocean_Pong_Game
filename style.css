@@ -1,0 +1,377 @@
+/* This is to*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: linear-gradient(135deg, 
+      #FFD700 0%,    
+      #87CEEB 25%,   
+      #20B2AA 50%,    
+      #1E90FF 75%,    
+      #191970 100%);  
+    /* display: flex;  */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    position: relative; 
+ }
+ 
+/* Animated wave overlay for summer vibes */
+body::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: summerShimmer 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+  
+.game-container{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#the-canvas{
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.menu {
+    position: absolute;           /* cover the whole container */
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: transparent;      /* or rgba(0,0,0,0.3) if you want overlay */
+  }
+
+
+.menu h1{
+    color : white;
+    margin-bottom: 30px;;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,3);
+}
+
+.sun{
+    position: absolute;
+    top: 50px;
+    right: 80px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.8);
+    animation: sunMove 10s infinite alternate ease-in-out;
+    z-index: 5;
+}
+
+@keyframes sunMove {
+    from { transform: translateY(0px); }
+    to {transform: translateY(20px); }
+}
+
+.cloud{
+    position:absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    box-shadow: -30px 10px 40px rgba(0,0,0,0.1);
+    z-index: 20;
+    animation: cloudMove 60s linear infinite;
+   
+}
+
+@keyframes cloudMove {
+    from{
+        transform : translateX(-200px); }
+        to{ transform: translateX(110vw);}
+} 
+
+.cloud::before,
+.cloud::after{
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.cloud:before{
+    width: 50%;
+    height: 80%;
+    left: -20px;
+    top: 20%;
+}
+
+.cloud::after{
+    width: 60%;
+    height: 100%;
+    left: 30%;
+    top: -30%;
+}
+
+/* Sand */
+.sand{
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    width: 100%;
+    height: auto;
+    z-index: 50;
+    
+}
+
+.popup{
+    display: none;
+    position: fixed;
+    top: 0;
+    left : 0;
+    width: 100%;
+    height : 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content{
+    background: white;
+    padding: 40px 60px;
+    border-radius: 15px;
+    text-align: center;
+    width: 500px;
+    max-width: 80%;
+    font-size: 18px;
+    box-shadow: 0 10px;
+
+}
+button {
+    background: linear-gradient(45deg, #1E3F66, #87CEFA);
+    border: 3px solid rgba(255,255,255,0.4);
+    padding: 20px 45px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 30px rgba(30, 63, 102, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+
+  button:hover{
+    background-color: #63b3ed;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  
+
+  #howToPlayBtn::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(135,206,250,0.1) 40%, transparent 70%);
+    animation: oceanWave 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  #aiVsPlayerBtn::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(135,206,250,0.1) 40%, transparent 70%);
+    animation: oceanWave 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  #playerVsPlayerBtn::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(135,206,250,0.1) 40%, transparent 70%);
+    animation: oceanWave 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+  #howToPlayBtn::after{
+    /* content: ''; */
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    /* animation: bubble 3s ease-in-out infinite; */
+  }
+
+  #aiVsPlayerBtn::after{
+    /* content: ''; */
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+  }
+
+
+  #gameBackBtn{
+    display:none;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 100;
+  } 
+  #playerVsPlayerBtn::after{
+    /* content: ''; */
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+   
+  }
+
+
+  @keyframes oceanWave {
+    0%, 100% { 
+      transform: rotate(0deg) translate(0, 0) scale(1); 
+      opacity: 0.3;
+    }
+    25% { 
+      transform: rotate(90deg) translate(15px, 10px) scale(1.1); 
+      opacity: 0.5;
+    }
+    50% { 
+      transform: rotate(180deg) translate(0, 20px) scale(1.2); 
+      opacity: 0.2;
+    }
+    75% { 
+      transform: rotate(270deg) translate(-15px, 10px) scale(1.1); 
+      opacity: 0.4;
+    }
+  }
+  
+  @keyframes bubble {
+    0%, 100% { 
+      transform: translateY(0px) scale(1);
+      opacity: 0.6;
+    }
+    50% { 
+      transform: translateY(-5px) scale(1.2);
+      opacity: 0.8;
+    }
+  }
+  
+
+  #howToPlayBtn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(30, 63, 102, 0.6),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.7);
+    background: linear-gradient(45deg, #2a4d7a, #9dd5f7);
+  }
+  #aiVsPlayerBtn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(30, 63, 102, 0.6),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.7);
+    background: linear-gradient(45deg, #2a4d7a, #9dd5f7);
+  }
+  #playerVsPlayerBtn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(30, 63, 102, 0.6),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.7);
+    background: linear-gradient(45deg, #2a4d7a, #9dd5f7);
+  }
+
+  #howToPlayBtn:active{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 63, 102, 0.5);
+  }
+  #aiVsPlayerBtn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 63, 102, 0.5);
+  }
+  #playerVsPlayerBtn:active{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 63, 102, 0.5);
+  }
+
+  
+  
+
+/* @media(max-width: 768px){
+
+    .game-container{
+        width: 10000vw;
+        height: 70vh;
+    }
+    .controls{
+        font-size: 12px;
+    }
+} */
+
+/* @media(max-width: 480px){
+    .game-container{
+        
+        width: 98vw;
+        height: 60vh;
+    }
+    .controls{
+        font-size: 12px;
+        
+    }
+}
+ */
+
+

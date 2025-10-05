@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Pong</title>
+    <link rel="stylesheet" href="style.css">
+    <script src = "script.js"></script>
+</head>
+<body>
+    <div class = "game-container">
+        <div class = "menu">
+        <button id = "howToPlayBtn"> How To Play</button>
+        <button id = "aiVsPlayerBtn">AI Vs Player</button>
+        <button id = "playerVsPlayerBtn">Multiplayer</button>
+        </div>
+        <canvas id = 'the-canvas'></canvas>
+
+        <button id = "gameBackBtn">Back</button>
+
+        <svg class ="sand" xmlns = "https://www.w3.org/2000/svg" viewBox = "0 0 1440 320">
+            <path fill = "#f4e1b5"
+            d="M0,224 L80,234 L160,245 L240,267 L320,250 L400,235 L480,250 L560,235 L640,245 L720,230 L800,245 L880,235 L960,250 L1040,245 L1120,235 L1200,250 L1280,240 L1360,235 L1440,245 L1440,320 L0,320 Z">
+            </path>
+        </svg>
+       
+    </div>
+
+    <div id = "popup" class = "popup">
+        <div class = "popup-content">
+            <h2>How to Play</h2>
+            <p>Player 1: W = Up, S = Down</p>
+            <p>Player 2: ↑ = Up, ↓ = Down</p>
+            <p>Score 10 points to win!</p>
+            <button id = "closePopup">Close</button>
+        </div>
+    </div>
+     
+
+    <div id = "aiDifficultyPopup" class = "popup">
+        <div class = "popup-content">
+            <h2> Select Ai Dfficulty (1-10) </h2>
+            <input type = "number" id = "aiDifficultyInput" min = "1" max = "10" value = "5">
+            <button id = "aiDifficultyConfirm"> Start Game</button>
+            <button id = "aiBackBtn">Back</button>
+        </div>
+    </div>
+
+    <!-- This is for the name of the players -->
+    <div id = "playerNamePopup" class = "popup">
+        <div class = "popup-content">
+            <h2>Enter your player name</h2>
+            <input type ="text" id = "player1Input" placeholder="Player 1 name">
+            <input type ="text" id = "player2Input" placeholder="Player 2 name">
+            <button id = "playerNameConfirm">Start Game</button>
+            <button id = "playerNameBackBtn">Back</button>
+        </div>
+    </div>
+ 
+    <!-- Sun -->
+    <div class ="sun"></div>
+</body>
+</html>
