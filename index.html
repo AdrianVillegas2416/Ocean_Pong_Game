@@ -5,18 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean Pong</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src = "script.js"></script>
 </head>
 <body>
+
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splashScreen">
+        <!-- Sky -->
+        <div class="s-sky">
+            <div class="s-sun"></div>
+            <div class="s-cloud" style="top:8%; left:8%; width:110px; animation-duration:22s;"></div>
+            <div class="s-cloud" style="top:18%; left:38%; width:80px; animation-duration:30s; animation-delay:-10s;"></div>
+            <div class="s-cloud" style="top:7%; left:62%; width:130px; animation-duration:26s; animation-delay:-6s;"></div>
+            <div class="s-cloud" style="top:22%; left:15%; width:95px; animation-duration:35s; animation-delay:-18s;"></div>
+            <div class="s-cloud" style="top:5%; left:48%; width:70px; animation-duration:28s; animation-delay:-4s;"></div>
+            <div class="s-cloud" style="top:14%; left:78%; width:115px; animation-duration:24s; animation-delay:-14s;"></div>
+            <div class="s-cloud" style="top:25%; left:55%; width:60px; animation-duration:32s; animation-delay:-22s;"></div>
+
+        </div>
+        <!-- Ocean -->
+        <div class="s-ocean">
+            <!-- Boat -->
+            <div class="s-boat">
+                <div class="s-sail"></div>
+                <div class="s-hull"></div>
+            </div>
+            <div class="s-wave-row w1"></div>
+            <div class="s-wave-row w2"></div>
+        </div>
+        <!-- Sand -->
+        <div class="s-sand">
+            <div class="s-rocks-left"></div>
+            <div class="s-rocks-right"></div>
+            <!-- Starter trio walking side by side -->
+            <div class="s-walk-group">
+                <img class="s-walking-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif" alt="Bulbasaur" style="width:90px; height:90px; animation-delay:0s;">
+                <img class="s-walking-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif" alt="Charmander" style="width:94px; height:94px; animation-delay:-0.13s;">
+                <img class="s-walking-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif" alt="Squirtle" style="width:90px; height:90px; animation-delay:-0.26s;">
+            </div>
+        </div>
+        <!-- Palm tree -->
+        <div class="s-palm">
+            <div class="s-leaves">
+                <div class="s-leaf l1"></div>
+                <div class="s-leaf l2"></div>
+                <div class="s-leaf l3"></div>
+                <div class="s-leaf l4"></div>
+            </div>
+            <div class="s-trunk"></div>
+        </div>
+        <!-- Title content -->
+        <div class="s-content">
+            <h1 class="s-title" id="splashTitle">OCEAN<br>PONG</h1>
+            <p class="s-start" id="splashStart">— CLICK ANYWHERE TO START —</p>
+        </div>
+    </div>
+
     <div class = "game-container">
         <div class = "menu">
         <button id = "howToPlayBtn"> How To Play</button>
         <button id = "aiVsPlayerBtn">AI Vs Player</button>
         <button id = "playerVsPlayerBtn">Multiplayer</button>
+        <button id = "musicSettingsBtn">⚙ Music</button>
         </div>
         <canvas id = 'the-canvas'></canvas>
 
         <button id = "gameBackBtn">Back</button>
+        <button id = "pauseBtn">⏸ Pause</button>
+        <button id = "inGameMusicBtn">🎵 Music</button>
 
         <svg class ="sand" xmlns = "https://www.w3.org/2000/svg" viewBox = "0 0 1440 320">
             <path fill = "#f4e1b5"
@@ -26,13 +83,43 @@
        
     </div>
 
-    <div id = "popup" class = "popup">
-        <div class = "popup-content">
-            <h2>How to Play</h2>
-            <p>Player 1: W = Up, S = Down</p>
-            <p>Player 2: ↑ = Up, ↓ = Down</p>
-            <p>Score 10 points to win!</p>
-            <button id = "closePopup">Close</button>
+    <div id="popup" class="popup">
+        <div class="popup-content htp-content">
+            <!-- Floating bubbles -->
+            <div class="htp-bubble b1"></div>
+            <div class="htp-bubble b2"></div>
+            <div class="htp-bubble b3"></div>
+            <div class="htp-bubble b4"></div>
+
+            <h2 class="htp-title">🌊 How to Play</h2>
+
+            <div class="htp-cards">
+                <div class="htp-card htp-p1">
+                    <div class="htp-card-icon">🐠</div>
+                    <div class="htp-card-label">Player 1</div>
+                    <div class="htp-card-keys">
+                        <span class="htp-key">W</span> Up &nbsp;
+                        <span class="htp-key">S</span> Down
+                    </div>
+                </div>
+                <div class="htp-card htp-p2">
+                    <div class="htp-card-icon">🐡</div>
+                    <div class="htp-card-label">Player 2</div>
+                    <div class="htp-card-keys">
+                        <span class="htp-key">↑</span> Up &nbsp;
+                        <span class="htp-key">↓</span> Down
+                    </div>
+                </div>
+            </div>
+
+            <div class="htp-divider">🌿🪸🌿🪸🌿</div>
+
+            <div class="htp-rules">
+                <div class="htp-rule">🏆 <strong>Score 10 points</strong> to win!</div>
+                <div class="htp-rule">⏸ <strong>Space / Esc</strong> to pause</div>
+                <div class="htp-rule">⚡ Hold <strong>Shift</strong> for a speed boost!</div>
+            </div>
+            <button id="closePopup">🐚 Dive In!</button>
         </div>
     </div>
      
@@ -40,7 +127,10 @@
     <div id = "aiDifficultyPopup" class = "popup">
         <div class = "popup-content">
             <h2> Select Ai Dfficulty (1-10) </h2>
-            <input type = "number" id = "aiDifficultyInput" min = "1" max = "10" value = "5">
+            <div class = "difficulty-input">
+                <label for = "aiDifficultyInput"> Difficulty Level</label>
+                <input type = "number" id = "aiDifficultyInput" min = "1" max = "10" value = "5">
+            </div>
             <button id = "aiDifficultyConfirm"> Start Game</button>
             <button id = "aiBackBtn">Back</button>
         </div>
@@ -50,8 +140,15 @@
     <div id = "playerNamePopup" class = "popup">
         <div class = "popup-content">
             <h2>Enter your player name</h2>
-            <input type ="text" id = "player1Input" placeholder="Player 1 name">
-            <input type ="text" id = "player2Input" placeholder="Player 2 name">
+
+            <div class = "player-input"> 
+                <label> Player 1: </label>
+            <input type ="text" id = "player1NameInput" placeholder="Player 1">
+            </div>
+            <div class = "player-input"> 
+                <label> Player 2:</label>
+                <input type ="text" id = "player2NameInput" placeholder="Player 2">
+            </div>
             <button id = "playerNameConfirm">Start Game</button>
             <button id = "playerNameBackBtn">Back</button>
         </div>
@@ -59,5 +156,136 @@
  
     <!-- Sun -->
     <div class ="sun"></div>
+
+    <!-- Theme Picker Popup -->
+    <div id="themePickerPopup" class="popup">
+        <div class="popup-content theme-picker-content">
+            <!-- Bubbles -->
+            <div class="tp-bubble tb1"></div>
+            <div class="tp-bubble tb2"></div>
+            <div class="tp-bubble tb3"></div>
+
+            <h2 class="tp-title">🌊 Choose Your Ocean</h2>
+
+            <div class="theme-cards">
+                <div class="theme-card dark-card" id="darkThemeBtn">
+                    <div class="tc-top">
+                        <div class="tc-icon">🌑</div>
+                        <div class="tc-name">Dark Ocean</div>
+                        <div class="tc-desc">Deep &amp; Mysterious</div>
+                    </div>
+                    <div class="tc-wave-bottom"></div>
+                </div>
+                <div class="theme-card sunny-card" id="sunnyThemeBtn">
+                    <div class="tc-top">
+                        <div class="tc-icon">☀️</div>
+                        <div class="tc-name">Sunny Ocean</div>
+                        <div class="tc-desc">Bright &amp; Tropical</div>
+                    </div>
+                    <div class="tc-wave-bottom"></div>
+                </div>
+            </div>
+
+            <div class="tp-divider">🐚 ～ 🐠 ～ 🐚</div>
+
+            <!-- Score selector -->
+            <div class="score-selector">
+                <p class="score-label">🏆 First to score:</p>
+                <div class="score-opts">
+                    <button class="score-opt" data-score="5">5</button>
+                    <button class="score-opt selected" data-score="10">10</button>
+                    <button class="score-opt" data-score="15">15</button>
+                </div>
+                <div class="score-custom-row">
+                    <span class="score-custom-label">or custom:</span>
+                    <input type="number" id="customScoreInput" class="custom-score-input" min="1" max="99" placeholder="e.g. 7">
+                </div>
+            </div>
+            <button id="themeBackBtn">🐚 Back</button>
+        </div>
+    </div>
+
+    <!-- Music Settings Popup -->
+    <div id="musicSettingsPopup" class="popup">
+        <div class="popup-content music-settings-content">
+            <h2>🎵 Music Settings</h2>
+            <div class="music-options">
+                <div class="music-option" id="musicOptNone" data-choice="none">
+                    <div class="music-icon">🔇</div>
+                    <div class="music-label">No Music</div>
+                    <div class="music-sub">Silence</div>
+                </div>
+                <div class="music-option selected" id="musicOptSong1" data-choice="song1">
+                    <div class="music-icon">🎵</div>
+                    <div class="music-label">Zinnia Battle</div>
+                    <div class="music-sub">OmegaRuby &amp; AlphaSapphire</div>
+                </div>
+                <div class="music-option" id="musicOptSong2" data-choice="song2">
+                    <div class="music-icon">🎶</div>
+                    <div class="music-label">Cynthia Battle</div>
+                    <div class="music-sub">Diamond &amp; Pearl</div>
+                </div>
+                <div class="music-option" id="musicOptSong3" data-choice="song3">
+                    <div class="music-icon">🌿</div>
+                    <div class="music-label">Ecruteak City</div>
+                    <div class="music-sub">HeartGold &amp; SoulSilver</div>
+                </div>
+            </div>
+            <!-- Volume Slider -->
+            <div class="volume-row">
+                <span class="vol-icon">🔈</span>
+                <input type="range" id="musicVolume" class="volume-slider" min="0" max="1" step="0.05" value="0.4">
+                <span class="vol-icon">🔊</span>
+            </div>
+            <button id="musicSettingsClose">Done</button>
+        </div>
+    </div>
+
+    <!-- Pokémon Picker Popup -->
+    <div id="pokemonPickerPopup" class="popup">
+        <div class="popup-content pokemon-picker-content">
+            <h2 id="pickerTitle">Choose Your Pokémon</h2>
+            <div class="picker-columns">
+                <div class="picker-col">
+                    <h3 id="p1Label">Player 1</h3>
+                    <div class="pokemon-grid" id="p1Grid"></div>
+                </div>
+                <div class="picker-col">
+                    <h3 id="p2Label">Player 2</h3>
+                    <div class="pokemon-grid" id="p2Grid"></div>
+                </div>
+            </div>
+            <p id="pickerError" style="color:red; display:none; margin-top:10px;">Please select a Pokémon for both sides!</p>
+            <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+                <button id="pokemonPickerConfirm">Start Game</button>
+                <button id="pokemonPickerBack">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Overlay -->
+    <div id="gameOverScreen" class="game-over-overlay" style="display:none;">
+        <div class="game-over-box">
+            <!-- Confetti rain -->
+            <div class="go-confetti">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <!-- Winning Pokémon -->
+            <div class="go-pokemon-wrap">
+                <div class="go-glow-ring"></div>
+                <img id="goWinnerImg" src="" alt="Winner" class="go-pokemon-img">
+            </div>
+            <!-- Text -->
+            <h2 id="gameOverWinnerText">You Win! 🎉</h2>
+            <p id="gameOverPlayerText" class="go-player-label">Player 1</p>
+            <!-- Buttons -->
+            <div class="game-over-btns">
+                <button id="playAgainBtn">🔄 Play Again</button>
+                <button id="mainMenuBtn">🏠 Main Menu</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
